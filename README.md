@@ -3,13 +3,7 @@ Evaluation Script for [SemEval-2018](http://alt.qcri.org/semeval2018/) Task 1: [
 
 
 ## 1. Evaluation Script
-The evaluation script [evaluate.py](evaluate.py) calculates the following four measures between the gold standard scores and the given predictions. 
- 1. Pearson_0_1: corresponds to the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) caclualted between all the predicions and the gold instances.
- 2. Spearman_0_1: corresponds to the [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) caclualted between all the predicions and the gold instances.
- 3. Pearson_05_1: corresponds to the Pearson correlation between predictions and gold instances where the gold score is greater than or equal to 0.5. 
- 4. Separman_05_1: corresponds to the Spearman correlation between predictions and gold instances where the gold score is greater than or equal to 0.5. 
- 
-The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that the average Pearson_0_1 obtained for the four emotions (anger, fear, joy and sadness) is the bottom-line competition metric and that remainder metrics are only given as a reference.
+The evaluation script [evaluate.py](evaluate.py) calculates the performance metrics between the gold standard scores and the given predictions. 
 
 
 ### 1.1. Prerequisites
@@ -23,7 +17,7 @@ The script can receive multiple pairs of prediction and gold standard files. In 
  ```bash
 python evaluate.py <task_type> <file-predictions> <file-gold> 
 ```
-task_type: 1 for regression, 2 for ordinal classification, and 3 for multi-label classification
+task_type: 1 for regression (EI-reg, V-reg), 2 for ordinal classification (EC-oc, V-oc), and 3 for multi-label classification (E-C).
 
 
 
