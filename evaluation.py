@@ -200,173 +200,173 @@ def init_metrics():
     """ initiliazes a dictionary with all the metrics """
     metrics={}
     
-    metrics['r_ei_macro_avg_en']=-10    
-    metrics['r_ei_anger_en']=-10
-    metrics['r_ei_fear_en']=-10
-    metrics['r_ei_joy_en']=-10
-    metrics['r_ei_sadness_en']=-10  
+    metrics['r_ei_macro_avg_en']=-999.999    
+    metrics['r_ei_anger_en']=-999.999
+    metrics['r_ei_fear_en']=-999.999
+    metrics['r_ei_joy_en']=-999.999
+    metrics['r_ei_sadness_en']=-999.999  
     
-    metrics['r_05_1_ei_macro_avg_en']=-10    
-    metrics['r_05_1_ei_anger_05_1_en']=-10
-    metrics['r_05_1_ei_fear_05_1_en']=-10
-    metrics['r_05_1_ei_joy_en']=-10
-    metrics['r_05_1_ei_sadness_en']=-10      
-    
-
-    metrics['r_ei_macro_avg_ar']=-10    
-    metrics['r_ei_anger_ar']=-10
-    metrics['r_ei_fear_ar']=-10
-    metrics['r_ei_joy_ar']=-10
-    metrics['r_ei_sadness_ar']=-10
-    
-    
-    metrics['r_05_1_ei_macro_avg_ar']=-10    
-    metrics['r_05_1_ei_anger_05_1_ar']=-10
-    metrics['r_05_1_ei_fear_05_1_ar']=-10
-    metrics['r_05_1_ei_joy_ar']=-10
-    metrics['r_05_1_ei_sadness_ar']=-10    
-
-    
-    metrics['r_ei_macro_avg_es']=-10    
-    metrics['r_ei_anger_es']=-10
-    metrics['r_ei_fear_es']=-10
-    metrics['r_ei_joy_es']=-10
-    metrics['r_ei_sadness_es']=-10
-
-
-    metrics['r_05_1_ei_macro_avg_es']=-10    
-    metrics['r_05_1_ei_anger_05_1_es']=-10
-    metrics['r_05_1_ei_fear_05_1_es']=-10
-    metrics['r_05_1_ei_joy_es']=-10
-    metrics['r_05_1_ei_sadness_es']=-10
-    
-    
-    metrics['r_oc_macro_avg_en']=-10    
-    metrics['r_oc_anger_en']=-10
-    metrics['r_oc_fear_en']=-10
-    metrics['r_oc_joy_en']=-10
-    metrics['r_oc_sadness_en']=-10  
-    
-    
-    metrics['r_some_oc_macro_avg_en']=-10    
-    metrics['r_some_oc_anger_en']=-10
-    metrics['r_some_oc_fear_en']=-10
-    metrics['r_some_oc_joy_en']=-10
-    metrics['r_some_oc_sadness_en']=-10  
-    
-    
-    metrics['kappa_oc_macro_avg_en']=-10    
-    metrics['kappa_oc_anger_en']=-10
-    metrics['kappa_oc_fear_en']=-10
-    metrics['kappa_oc_joy_en']=-10
-    metrics['kappa_oc_sadness_en']=-10  
-    
-    
-    metrics['kappa_some_oc_macro_avg_en']=-10    
-    metrics['kappa_some_oc_anger_en']=-10
-    metrics['kappa_some_oc_fear_en']=-10
-    metrics['kappa_some_oc_joy_en']=-10
-    metrics['kappa_some_oc_sadness_en']=-10  
-    
-    
+    metrics['r_05_1_ei_macro_avg_en']=-999.999    
+    metrics['r_05_1_ei_anger_en']=-999.999
+    metrics['r_05_1_ei_fear_en']=-999.999
+    metrics['r_05_1_ei_joy_en']=-999.999
+    metrics['r_05_1_ei_sadness_en']=-999.999      
     
 
-    metrics['r_oc_macro_avg_ar']=-10    
-    metrics['r_oc_anger_ar']=-10
-    metrics['r_oc_fear_ar']=-10
-    metrics['r_oc_joy_ar']=-10
-    metrics['r_oc_sadness_ar']=-10
+    metrics['r_ei_macro_avg_ar']=-999.999    
+    metrics['r_ei_anger_ar']=-999.999
+    metrics['r_ei_fear_ar']=-999.999
+    metrics['r_ei_joy_ar']=-999.999
+    metrics['r_ei_sadness_ar']=-999.999
+    
+    
+    metrics['r_05_1_ei_macro_avg_ar']=-999.999    
+    metrics['r_05_1_ei_anger_ar']=-999.999
+    metrics['r_05_1_ei_fear_ar']=-999.999
+    metrics['r_05_1_ei_joy_ar']=-999.999
+    metrics['r_05_1_ei_sadness_ar']=-999.999    
+
+    
+    metrics['r_ei_macro_avg_es']=-999.999    
+    metrics['r_ei_anger_es']=-999.999
+    metrics['r_ei_fear_es']=-999.999
+    metrics['r_ei_joy_es']=-999.999
+    metrics['r_ei_sadness_es']=-999.999
 
 
-    metrics['r_some_oc_macro_avg_ar']=-10    
-    metrics['r_some_oc_anger_ar']=-10
-    metrics['r_some_oc_fear_ar']=-10
-    metrics['r_some_oc_joy_ar']=-10
-    metrics['r_some_oc_sadness_ar']=-10 
+    metrics['r_05_1_ei_macro_avg_es']=-999.999    
+    metrics['r_05_1_ei_anger_es']=-999.999
+    metrics['r_05_1_ei_fear_es']=-999.999
+    metrics['r_05_1_ei_joy_es']=-999.999
+    metrics['r_05_1_ei_sadness_es']=-999.999
+    
+    
+    metrics['r_oc_macro_avg_en']=-999.999    
+    metrics['r_oc_anger_en']=-999.999
+    metrics['r_oc_fear_en']=-999.999
+    metrics['r_oc_joy_en']=-999.999
+    metrics['r_oc_sadness_en']=-999.999  
+    
+    
+    metrics['r_some_oc_macro_avg_en']=-999.999    
+    metrics['r_some_oc_anger_en']=-999.999
+    metrics['r_some_oc_fear_en']=-999.999
+    metrics['r_some_oc_joy_en']=-999.999
+    metrics['r_some_oc_sadness_en']=-999.999  
+    
+    
+    metrics['kappa_oc_macro_avg_en']=-999.999    
+    metrics['kappa_oc_anger_en']=-999.999
+    metrics['kappa_oc_fear_en']=-999.999
+    metrics['kappa_oc_joy_en']=-999.999
+    metrics['kappa_oc_sadness_en']=-999.999  
+    
+    
+    metrics['kappa_some_oc_macro_avg_en']=-999.999    
+    metrics['kappa_some_oc_anger_en']=-999.999
+    metrics['kappa_some_oc_fear_en']=-999.999
+    metrics['kappa_some_oc_joy_en']=-999.999
+    metrics['kappa_some_oc_sadness_en']=-999.999  
+    
+    
+    
+
+    metrics['r_oc_macro_avg_ar']=-999.999    
+    metrics['r_oc_anger_ar']=-999.999
+    metrics['r_oc_fear_ar']=-999.999
+    metrics['r_oc_joy_ar']=-999.999
+    metrics['r_oc_sadness_ar']=-999.999
 
 
-    metrics['kappa_oc_macro_avg_ar']=-10    
-    metrics['kappa_oc_anger_ar']=-10
-    metrics['kappa_oc_fear_ar']=-10
-    metrics['kappa_oc_joy_ar']=-10
-    metrics['kappa_oc_sadness_ar']=-10  
+    metrics['r_some_oc_macro_avg_ar']=-999.999    
+    metrics['r_some_oc_anger_ar']=-999.999
+    metrics['r_some_oc_fear_ar']=-999.999
+    metrics['r_some_oc_joy_ar']=-999.999
+    metrics['r_some_oc_sadness_ar']=-999.999 
+
+
+    metrics['kappa_oc_macro_avg_ar']=-999.999    
+    metrics['kappa_oc_anger_ar']=-999.999
+    metrics['kappa_oc_fear_ar']=-999.999
+    metrics['kappa_oc_joy_ar']=-999.999
+    metrics['kappa_oc_sadness_ar']=-999.999  
     
    
-    metrics['kappa_some_oc_macro_avg_ar']=-10    
-    metrics['kappa_some_oc_anger_ar']=-10
-    metrics['kappa_some_oc_fear_ar']=-10
-    metrics['kappa_some_oc_joy_ar']=-10
-    metrics['kappa_some_oc_sadness_ar']=-10  
+    metrics['kappa_some_oc_macro_avg_ar']=-999.999    
+    metrics['kappa_some_oc_anger_ar']=-999.999
+    metrics['kappa_some_oc_fear_ar']=-999.999
+    metrics['kappa_some_oc_joy_ar']=-999.999
+    metrics['kappa_some_oc_sadness_ar']=-999.999  
 
   
-    metrics['r_oc_macro_avg_es']=-10    
-    metrics['r_oc_anger_es']=-10
-    metrics['r_oc_fear_es']=-10
-    metrics['r_oc_joy_es']=-10
-    metrics['r_oc_sadness_es']=-10    
+    metrics['r_oc_macro_avg_es']=-999.999    
+    metrics['r_oc_anger_es']=-999.999
+    metrics['r_oc_fear_es']=-999.999
+    metrics['r_oc_joy_es']=-999.999
+    metrics['r_oc_sadness_es']=-999.999    
     
     
-    metrics['r_some_oc_macro_avg_es']=-10    
-    metrics['r_some_oc_anger_es']=-10
-    metrics['r_some_oc_fear_es']=-10
-    metrics['r_some_oc_joy_es']=-10
-    metrics['r_some_oc_sadness_es']=-10     
+    metrics['r_some_oc_macro_avg_es']=-999.999    
+    metrics['r_some_oc_anger_es']=-999.999
+    metrics['r_some_oc_fear_es']=-999.999
+    metrics['r_some_oc_joy_es']=-999.999
+    metrics['r_some_oc_sadness_es']=-999.999     
     
-    metrics['kappa_oc_macro_avg_es']=-10    
-    metrics['kappa_oc_anger_es']=-10
-    metrics['kappa_oc_fear_es']=-10
-    metrics['kappa_oc_joy_es']=-10
-    metrics['kappa_oc_sadness_es']=-10  
+    metrics['kappa_oc_macro_avg_es']=-999.999    
+    metrics['kappa_oc_anger_es']=-999.999
+    metrics['kappa_oc_fear_es']=-999.999
+    metrics['kappa_oc_joy_es']=-999.999
+    metrics['kappa_oc_sadness_es']=-999.999  
     
     
-    metrics['kappa_some_oc_macro_avg_es']=-10    
-    metrics['kappa_some_oc_anger_es']=-10
-    metrics['kappa_some_oc_fear_es']=-10
-    metrics['kappa_some_oc_joy_es']=-10
-    metrics['kappa_some_oc_sadness_es']=-10  
+    metrics['kappa_some_oc_macro_avg_es']=-999.999    
+    metrics['kappa_some_oc_anger_es']=-999.999
+    metrics['kappa_some_oc_fear_es']=-999.999
+    metrics['kappa_some_oc_joy_es']=-999.999
+    metrics['kappa_some_oc_sadness_es']=-999.999  
     
-    metrics['r_reg_valence_en']=-10  
-    metrics['r_05_1_reg_valence_en']=-10  
+    metrics['r_reg_valence_en']=-999.999  
+    metrics['r_05_1_reg_valence_en']=-999.999  
    
     
-    metrics['r_reg_valence_ar']=-10
-    metrics['r_05_1_reg_valence_ar']=-10  
+    metrics['r_reg_valence_ar']=-999.999
+    metrics['r_05_1_reg_valence_ar']=-999.999  
     
-    metrics['r_reg_valence_es']=-10
-    metrics['r_05_1_reg_valence_es']=-10  
+    metrics['r_reg_valence_es']=-999.999
+    metrics['r_05_1_reg_valence_es']=-999.999  
     
 
 
-    metrics['r_oc_valence_en']=-10 
-    metrics['r_some_oc_valence_en']=-10                
-    metrics['kappa_oc_valence_en']=-10  
-    metrics['kappa_some_oc_valence_en']=-10              
+    metrics['r_oc_valence_en']=-999.999 
+    metrics['r_some_oc_valence_en']=-999.999                
+    metrics['kappa_oc_valence_en']=-999.999  
+    metrics['kappa_some_oc_valence_en']=-999.999              
     
-    metrics['r_oc_valence_ar']=-10 
-    metrics['r_some_oc_valence_ar']=-10                
-    metrics['kappa_oc_valence_ar']=-10  
-    metrics['kappa_some_oc_valence_ar']=-10 
+    metrics['r_oc_valence_ar']=-999.999 
+    metrics['r_some_oc_valence_ar']=-999.999                
+    metrics['kappa_oc_valence_ar']=-999.999  
+    metrics['kappa_some_oc_valence_ar']=-999.999 
     
     
-    metrics['r_oc_valence_es']=-10 
-    metrics['r_some_oc_valence_es']=-10                
-    metrics['kappa_oc_valence_es']=-10  
-    metrics['kappa_some_oc_valence_es']=-10 
+    metrics['r_oc_valence_es']=-999.999 
+    metrics['r_some_oc_valence_es']=-999.999                
+    metrics['kappa_oc_valence_es']=-999.999  
+    metrics['kappa_some_oc_valence_es']=-999.999 
     
  
     
-    metrics['acc_e-c_en']=-10   
-    metrics['f1_micro_e-c_en']=-10   
-    metrics['f1_macro_e-c_en']=-10  
+    metrics['acc_e-c_en']=-999.999   
+    metrics['f1_micro_e-c_en']=-999.999   
+    metrics['f1_macro_e-c_en']=-999.999  
     
-    metrics['acc_e-c_ar']=-10   
-    metrics['f1_micro_e-c_ar']=-10   
-    metrics['f1_macro_e-c_ar']=-10   
+    metrics['acc_e-c_ar']=-999.999   
+    metrics['f1_micro_e-c_ar']=-999.999   
+    metrics['f1_macro_e-c_ar']=-999.999   
     
     
-    metrics['acc_e-c_es']=-10   
-    metrics['f1_micro_e-c_es']=-10   
-    metrics['f1_macro_e-c_es']=-10      
+    metrics['acc_e-c_es']=-999.999   
+    metrics['f1_micro_e-c_es']=-999.999   
+    metrics['f1_macro_e-c_es']=-999.999      
     
 
     
@@ -398,8 +398,8 @@ def ei_reg_scores(lang,submissions,metrics,ref_files):
     metrics['r_ei_macro_avg_'+lang]=numpy.mean([anger_scores[0],fear_scores[0],joy_scores[0],sadness_scores[0]])
     
 
-    metrics['r_05_1_ei_anger_05_1_'+lang]=anger_scores[1]
-    metrics['r_05_1_ei_fear_05_1_'+lang]=fear_scores[1]
+    metrics['r_05_1_ei_anger_'+lang]=anger_scores[1]
+    metrics['r_05_1_ei_fear_'+lang]=fear_scores[1]
     metrics['r_05_1_ei_joy_'+lang]=joy_scores[1]
     metrics['r_05_1_ei_sadness_'+lang]=sadness_scores[1]
     metrics['r_05_1_ei_macro_avg_'+lang]=numpy.mean([anger_scores[1],fear_scores[1],joy_scores[1],sadness_scores[1]])    
