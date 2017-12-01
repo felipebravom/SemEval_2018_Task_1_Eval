@@ -48,19 +48,19 @@ python tweets_to_arff <data_type> <input_file> <output file>
 ```
 
 The parameter <data_type> can take three possible values:
-* 1 for regression (EI-reg, V-reg)
-* 2 for ordinal classification (EC-oc, V-oc)
-* 3 for multi-label classification (E-C).
+* 1 for regression data (EI-reg, V-reg)
+* 2 for ordinal classification data (EC-oc, V-oc)
+* 3 for multi-label emotion classification data (E-C).
 
 
-### 2.2.  Weka Predictions to Submissions
+### 2.2.  Convert Weka Predictions into the Task's Submission Format
 
 The [fix_weka_output.py](fix_weka_output.py) script can be used for converting weka predictions into the official submission format.   
 
 #### Usage
 
  ```bash
-python tweets_to_arff <data_type> <input_file> <output file>
+python tweets_to_arff <original_test_data> <weka_predictions> <output file>
 ```
 
 Note: the current version of this script can only convert predictions from regression tasks.
@@ -68,18 +68,18 @@ Note: the current version of this script can only convert predictions from regre
 
 ### 2.3. Examples
 
-1. Convert training and target data for the anger emotion into arff format:
+1. Convert training and dev data for the anger emotion for the EI-reg into arff format:
 
  ```bash
-python tweets_to_arff.py data/anger-ratings-0to1.train.txt data/anger-ratings-0to1.train.arff
-python tweets_to_arff.py data/anger-ratings-0to1.test.target.txt data/anger-ratings-0to1.test.target.arff
+python tweets_to_arff.py 1 EI-reg-En-anger-train.txt EI-reg-En-anger-train.arff
+python tweets_to_arff.py 1 2018-EI-reg-En-anger-dev.txt 2018-EI-reg-En-anger-dev.arff
 ```
- If testing data hasn't been provided yet, you can split the training file into training and testing sub-samples. 
 
-2. Train an SVM regression (from LibLinear) on the training data using lexicons, SentiStrength, and word embeddings as features, classify the target tweets, and output the predictions:
+
+2. Train an SVM regression (from LibLinear) on the training data using unigrams as features, classify the dev tweets, and output the predictions:
 
  ```bash
-java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t data/anger-ratings-0to1.train.arff -T data/anger-ratings-0to1.test.target.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file data/anger-pred.csv" -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToEmbeddingsFeatureVector -I 2 -B $HOME/wekafiles/packages/AffectiveTweets/resources/w2v.twitter.edinburgh.100d.csv.gz -S 0 -K 15 -L -O\" -F \"weka.filters.unsupervised.attribute.TweetToLexiconFeatureVector -I 2 -A -D -F -H -J -L -N -P -Q -R -T -U -O\" -F \"weka.filters.unsupervised.attribute.TweetToSentiStrengthFeatureVector -I 2 -U -O\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000 
+java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t EI-reg-En-anger-train.arff -T 2018-EI-reg-En-anger-dev.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file EI-reg-En-anger-weka-predictions.csv" -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToSparseFeatureVector -E 5 -D 3 -I 0 -F -M 2 -G 0 -taggerFile $HOME/wekafiles/packages/AffectiveTweets/resources/model.20120919 -wordClustFile $HOME/wekafiles/packages/AffectiveTweets/resources/50mpaths2.txt.gz -Q 1 -stemmer weka.core.stemmers.NullStemmer -stopwords-handler \\\"weka.core.stopwords.Null \\\" -I 2 -U -tokenizer \\\"weka.core.tokenizers.TweetNLPTokenizer \\\"\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000
 ```
 
  Make sure that the LibLinear Weka package has been properly installed. 
@@ -87,11 +87,14 @@ java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.Filtere
 3. Convert the predictions into the task format:
 
  ```bash
-python fix_weka_output.py data/anger-pred.txt data/anger-pred.txt
+python fix_weka_output.py 2018-EI-reg-En-anger-dev.txt EI-reg-En-anger-weka-predictions.csv EI-reg_en_anger_pred.txt
  ```
  
 4. Evaluate the predictions: 
  
  ```bash
-python evaluate.py 1 data/anger-pred.txt data/anger-ratings-0to1.test.gold.txt
+python evaluate.py 1 EI-reg_en_anger_pred.txt 2018-EI-reg-En-anger-dev.txt 
  ```
+ 
+ ## TODO
+ Examples for making submissions for OC and Multi-label tasks will be published soon. We will use [MEKA](http://meka.sourceforge.net/) (a Multi-label Extension to WEKA)  for the multi-label data.
