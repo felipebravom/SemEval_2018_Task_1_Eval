@@ -86,7 +86,7 @@ python tweets_to_arff.py 1 2018-EI-reg-En-anger-dev.txt 2018-EI-reg-En-anger-dev
 java -Xmx4G -cp $WEKA_FOLDER/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t EI-reg-En-anger-train.arff -T 2018-EI-reg-En-anger-dev.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file EI-reg-En-anger-weka-predictions.csv" -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToSparseFeatureVector -E 5 -D 3 -I 0 -F -M 2 -G 0 -taggerFile $HOME/wekafiles/packages/AffectiveTweets/resources/model.20120919 -wordClustFile $HOME/wekafiles/packages/AffectiveTweets/resources/50mpaths2.txt.gz -Q 1 -stemmer weka.core.stemmers.NullStemmer -stopwords-handler \\\"weka.core.stopwords.Null \\\" -I 2 -U -tokenizer \\\"weka.core.tokenizers.TweetNLPTokenizer \\\"\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000
 ```
 
- Make sure that the LibLinear Weka package is properly installed. Note: the snippet frpm above can look cryptic. You can always configure your classifier from the WEKA GUI and then copy the configuration to use it with the command line.
+ Make sure that the LibLinear Weka package is properly installed. Note: the snippet from above may look cryptic. Bear in mind that you can configure your classifier from the WEKA GUI and then copy the resulting configuration to the command line.
 
 3. Convert the predictions into the task format:
 
