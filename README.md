@@ -35,7 +35,7 @@ python evaluate.py 1 EI-reg_en_fear_pred.txt EI-reg_en_fear_pred.txt
 ```
 
 ## 2. Weka Baseline System
-We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://affectivetweets.cms.waikato.ac.nz/) to be used as a baseline system. The package allows calculating multiple features from a tweet and can be used together with many machine learning methods implemented in WEKA. Installation instructions are given in the project's [webpage](https://affectivetweets.cms.waikato.ac.nz/install/). Make sure to install the latest version (1.0.1) as well as the LibLinear package before running the examples fro below.  
+We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://affectivetweets.cms.waikato.ac.nz/) to be used as a baseline system. The package allows calculating multiple features from a tweet and can be used together with many machine learning methods implemented in WEKA. Installation instructions are given in the project's [webpage](https://affectivetweets.cms.waikato.ac.nz/install/). Make sure to install the latest version (1.0.1) as well as the LibLinear package before running the examples from below.  
 
 ### 2.1. Data to Arff
 
