@@ -1,5 +1,5 @@
 # SemEval-2018 Task 1 Affect in Tweets Evaluation Script
-Evaluation Script for [SemEval-2018](http://alt.qcri.org/semeval2018/) Task 1: [Affect in Tweets Task](http://www.saifmohammad.com/WebPages/affectintweets.htm).  
+Evaluation Script for [SemEval-2018](http://alt.qcri.org/semeval2018/) Task 1: [Affect in Tweets](http://www.saifmohammad.com/WebPages/affectintweets.htm).  
 
 
 ## 1. Evaluation Script
@@ -19,27 +19,27 @@ python evaluate.py <task_type> <file-predictions> <file-gold>
 ```
 
 The parameter <task_type> can take three possible values:
-* 1 for regression (EI-reg, V-reg)
-* 2 for ordinal classification (EC-oc, V-oc)
-* 3 for multi-label classification (E-C).
+* 1 for regression (EI-reg and V-reg tasks)
+* 2 for ordinal classification (EI-oc and V-oc tasks)
+* 3 for multi-label classification (E-c tasks).
 
 
 
 ### 1.3. Format
 Each input file must have the format specified in the competition's [website](http://www.saifmohammad.com/WebPages/affectintweets.htm).  
 
-If you want to use the script purely a format checker, evaluate your predictions against themselves:
+If you want to use the script for format checking, evaluate your predictions against themselves:
 
  ```bash
 python evaluate.py 1 EI-reg_en_fear_pred.txt EI-reg_en_fear_pred.txt
 ```
 
 ## 2. Weka Baseline System
-We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://affectivetweets.cms.waikato.ac.nz/) to be used as a baseline system. The package allows calculating multiple features from a tweet. Installation instructions are given in the project's [webpage](https://affectivetweets.cms.waikato.ac.nz/install/). Make sure to install version 1.0.1 as well as the LibLinear package before running the baselines.  
+We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://affectivetweets.cms.waikato.ac.nz/) to be used as a baseline system. The package allows calculating multiple features from a tweet and can be used together with many machine learning methods implemented in WEKA. Installation instructions are given in the project's [webpage](https://affectivetweets.cms.waikato.ac.nz/install/). Make sure to install the latest version (1.0.1) as well as the LibLinear package before running the examples fro below.  
 
 ### 2.1. Data to Arff
 
-The [tweets_to_arff.py](tweets_to_arff.py) script allows you to convert the task data into the [arff](http://weka.wikispaces.com/ARFF)  weka format.
+The [tweets_to_arff.py](tweets_to_arff.py) script allows you to convert the task data into the [arff](http://weka.wikispaces.com/ARFF) WEKA format.
 
 #### Usage
 
@@ -63,12 +63,16 @@ The [fix_weka_output.py](fix_weka_output.py) script can be used for converting w
 python tweets_to_arff <original_test_data> <weka_predictions> <output file>
 ```
 
-Note: the current version of this script can only convert predictions from regression tasks.
+Note: the current version of this script can only convert predictions from regression tasks. We will add support for other tasks soon.
 
 
 ### 2.3. Examples
 
-1. Convert training and dev data for the anger emotion for the EI-reg into arff format:
+#### SVM Regression on EI-reg Anger
+In this example we will train an SVM regression (from LibLinear) on EI-reg-En-anger-train using unigrams as features, and we will deploy the classifier on the corresponding development set.
+
+
+1. Convert training and dev sets into arff format:
 
  ```bash
 python tweets_to_arff.py 1 EI-reg-En-anger-train.txt EI-reg-En-anger-train.arff
@@ -76,13 +80,13 @@ python tweets_to_arff.py 1 2018-EI-reg-En-anger-dev.txt 2018-EI-reg-En-anger-dev
 ```
 
 
-2. Train an SVM regression (from LibLinear) on the training data using unigrams as features, classify the dev tweets, and output the predictions:
+2. Train the classifier using Weka and save the predictions as a csv file:
 
  ```bash
-java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t EI-reg-En-anger-train.arff -T 2018-EI-reg-En-anger-dev.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file EI-reg-En-anger-weka-predictions.csv" -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToSparseFeatureVector -E 5 -D 3 -I 0 -F -M 2 -G 0 -taggerFile $HOME/wekafiles/packages/AffectiveTweets/resources/model.20120919 -wordClustFile $HOME/wekafiles/packages/AffectiveTweets/resources/50mpaths2.txt.gz -Q 1 -stemmer weka.core.stemmers.NullStemmer -stopwords-handler \\\"weka.core.stopwords.Null \\\" -I 2 -U -tokenizer \\\"weka.core.tokenizers.TweetNLPTokenizer \\\"\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000
+java -Xmx4G -cp $WEKA_FOLDER/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t EI-reg-En-anger-train.arff -T 2018-EI-reg-En-anger-dev.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file EI-reg-En-anger-weka-predictions.csv" -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToSparseFeatureVector -E 5 -D 3 -I 0 -F -M 2 -G 0 -taggerFile $HOME/wekafiles/packages/AffectiveTweets/resources/model.20120919 -wordClustFile $HOME/wekafiles/packages/AffectiveTweets/resources/50mpaths2.txt.gz -Q 1 -stemmer weka.core.stemmers.NullStemmer -stopwords-handler \\\"weka.core.stopwords.Null \\\" -I 2 -U -tokenizer \\\"weka.core.tokenizers.TweetNLPTokenizer \\\"\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000
 ```
 
- Make sure that the LibLinear Weka package has been properly installed. 
+ Make sure that the LibLinear Weka package is properly installed. 
 
 3. Convert the predictions into the task format:
 
@@ -97,4 +101,4 @@ python evaluate.py 1 EI-reg_en_anger_pred.txt 2018-EI-reg-En-anger-dev.txt
  ```
  
  ## TODO
- Examples for making submissions for OC and Multi-label tasks will be published soon. We will use [MEKA](http://meka.sourceforge.net/) (a Multi-label Extension to WEKA)  for the multi-label data.
+ Examples for making submissions for ordinal and multi-label classification tasks will be published soon. We will use [MEKA](http://meka.sourceforge.net/) (a Multi-label Extension to WEKA)  for the multi-label data.
