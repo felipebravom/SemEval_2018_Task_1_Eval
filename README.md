@@ -25,7 +25,6 @@ The parameter <task_type> can take three possible values:
 
 
 
-
 ### 1.3. Format
 Each input file must have the format specified in the competition's [website](http://www.saifmohammad.com/WebPages/affectintweets.htm).  
 
@@ -36,12 +35,21 @@ python evaluate.py 1 EI-reg_en_fear_pred.txt EI-reg_en_fear_pred.txt
 ```
 
 ## 2. Weka Baseline System
-We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://github.com/felipebravom/AffectiveTweets) to be used as a baseline system. The package allows calculating multiple features from a tweet. Installation instructions are given in the project's [webpage](https://github.com/felipebravom/AffectiveTweets#installation). Make sure to install the LibLinear and RankCorrelation packages before running the baselines.  
+We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://affectivetweets.cms.waikato.ac.nz/) to be used as a baseline system. The package allows calculating multiple features from a tweet. Installation instructions are given in the project's [webpage](https://affectivetweets.cms.waikato.ac.nz/install/). Make sure to install version 1.0.1 as well as the LibLinear package before running the baselines.  
 
-We have also implemented the [tweets_to_arff.py](tweets_to_arff.py) script for converting the task data into [arff](http://weka.wikispaces.com/ARFF) format, and the [fix_weka_output.py](fix_weka_output.py) script for converting weka predictions into the official submission format.   
+### 2.1. Data to Arff
+
+We have also implemented the [tweets_to_arff.py](tweets_to_arff.py) script for converting the task data into [arff](http://weka.wikispaces.com/ARFF) format.
 
 
-### 2.1. Example
+### 2.2.  
+
+and the [fix_weka_output.py](fix_weka_output.py) script for converting weka predictions into the official submission format.   
+
+
+
+
+### 2.3. Examples
 
 1. Convert training and target data for the anger emotion into arff format:
 
