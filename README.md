@@ -44,7 +44,7 @@ The [tweets_to_arff.py](tweets_to_arff.py) script allows you to convert the task
 #### Usage
 
  ```bash
-python tweets_to_arff <data_type> <input_file> <output file>
+python tweets_to_arff.py <data_type> <input_file> <output file>
 ```
 
 The parameter <data_type> can take three possible values:
@@ -60,7 +60,7 @@ The [fix_weka_output.py](fix_weka_output.py) script can be used for converting w
 #### Usage
 
  ```bash
-python tweets_to_arff <original_test_data> <weka_predictions> <output file>
+python tweets_to_arff.py <original_test_data> <weka_predictions> <output file>
 ```
 
 Note: the current version of this script can only convert predictions from regression tasks. We will add support for other tasks soon.
