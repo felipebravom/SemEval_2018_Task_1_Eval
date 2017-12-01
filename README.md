@@ -39,14 +39,31 @@ We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package call
 
 ### 2.1. Data to Arff
 
-We have also implemented the [tweets_to_arff.py](tweets_to_arff.py) script for converting the task data into [arff](http://weka.wikispaces.com/ARFF) format.
+The [tweets_to_arff.py](tweets_to_arff.py) script allows you to convert the task data into the [arff](http://weka.wikispaces.com/ARFF)  weka format.
+
+#### Usage
+
+ ```bash
+python tweets_to_arff <data_type> <input_file> <output file>
+```
+
+The parameter <data_type> can take three possible values:
+* 1 for regression (EI-reg, V-reg)
+* 2 for ordinal classification (EC-oc, V-oc)
+* 3 for multi-label classification (E-C).
 
 
-### 2.2.  
+### 2.2.  Weka Predictions to Submissions
 
-and the [fix_weka_output.py](fix_weka_output.py) script for converting weka predictions into the official submission format.   
+The [fix_weka_output.py](fix_weka_output.py) script can be used for converting weka predictions into the official submission format.   
 
+#### Usage
 
+ ```bash
+python tweets_to_arff <data_type> <input_file> <output file>
+```
+
+Note: the current version of this script can only convert predictions from regression tasks.
 
 
 ### 2.3. Examples
