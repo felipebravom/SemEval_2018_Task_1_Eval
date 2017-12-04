@@ -105,8 +105,8 @@ python evaluate.py 1 EI-reg_en_anger_pred.txt 2018-EI-reg-En-anger-dev.txt
  ```
  
  
-#### SVM Ordinal Classification on EI-oc-En Anger 
-In this example we will use the Weka [OrdinalClassClassifier](http://weka.sourceforge.net/doc.packages/ordinalClassClassifier/weka/classifiers/meta/OrdinalClassClassifier.html) to train and Ordinal Classification model on  EI-oc-En-anger-train using unigrams as features and an SVM classifier (from LibLinear) as the model. We will deploy the classifier on the corresponding development set.
+#### SVM Classification on EI-oc-En Anger 
+In this example we will train an SVM classifier (from LibLinear) on  EI-oc-En-anger-train using unigrams as features. We will deploy the classifier on the corresponding development set.
  
 1. Convert training and dev sets into arff format:
 
