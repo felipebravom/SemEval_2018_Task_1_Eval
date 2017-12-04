@@ -55,20 +55,24 @@ The parameter <data_type> can take three possible values:
 
 ### 2.2.  Convert Weka Predictions into the Task's Submission Format
 
-The [fix_weka_output.py](fix_weka_output.py) script can be used for converting weka predictions into the official submission format.   
+The [fix_weka_output.py](fix_weka_output.py) script can be used for converting [weka predictions](https://weka.wikispaces.com/Making+predictions) into the official submission format.   
 
 #### Usage
 
  ```bash
-python tweets_to_arff.py <original_test_data> <weka_predictions> <output file>
+python fix_weka_output.py <data_type> <original_test_data> <weka_predictions> <output file>
 ```
 
-Note: the current version of this script can only convert predictions made for the regression tasks. We will add support for other tasks soon.
+The parameter <data_type> can take two possible values:
+* 1 for regression data (EI-reg, V-reg)
+* 2 for ordinal classification data (EC-oc, V-oc)
+
+Note: the current version of this script can only convert predictions made for the regression and ordinal classification tasks. We will add support for multi-label classification soon.
 
 
 ### 2.3. Examples
 
-#### SVM Regression on EI-reg Anger
+#### SVM Regression on EI-reg-En Anger
 In this example we will train an SVM regression (from LibLinear) on EI-reg-En-anger-train using unigrams as features, and we will deploy the classifier on the corresponding development set.
 
 
@@ -91,7 +95,7 @@ java -Xmx4G -cp $WEKA_FOLDER/weka.jar weka.Run weka.classifiers.meta.FilteredCla
 3. Convert the predictions into the task format:
 
  ```bash
-python fix_weka_output.py 2018-EI-reg-En-anger-dev.txt EI-reg-En-anger-weka-predictions.csv EI-reg_en_anger_pred.txt
+python fix_weka_output.py 1 2018-EI-reg-En-anger-dev.txt EI-reg-En-anger-weka-predictions.csv EI-reg_en_anger_pred.txt
  ```
  
 4. Evaluate the predictions: 
@@ -100,5 +104,41 @@ python fix_weka_output.py 2018-EI-reg-En-anger-dev.txt EI-reg-En-anger-weka-pred
 python evaluate.py 1 EI-reg_en_anger_pred.txt 2018-EI-reg-En-anger-dev.txt 
  ```
  
+ 
+#### SVM Ordinal Classification on EI-oc-En Anger 
+In this example we will use the Weka [OrdinalClassClassifier](http://weka.sourceforge.net/doc.packages/ordinalClassClassifier/weka/classifiers/meta/OrdinalClassClassifier.html) to train and Ordinal Classification model on  EI-oc-En-anger-train using unigrams as features and an SVM classifier (from LibLinear) as the model. We will deploy the classifier on the corresponding development set.
+ 
+1. Convert training and dev sets into arff format:
+
+ ```bash
+python ../workspace/SemEval_2018_Task_1_Eval/tweets_to_arff.py 2 EI-oc-En-anger-train.txt EI-oc-En-anger-train.arff
+python ../workspace/SemEval_2018_Task_1_Eval/tweets_to_arff.py 2 2018-EI-oc-En-anger-dev.txt 2018-EI-oc-En-anger-dev.arff
+```
+
+
+2. Train the classifier using Weka and save the predictions made on the dev set as a csv file: 
+ 
+
+ ```bash
+java -Xmx4G -cp $WEKA_FOLDER/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t EI-oc-En-anger-train.arff -T 2018-EI-oc-En-anger-dev.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file EI-oc-En-anger-weka-predictions.csv" -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToSparseFeatureVector -E 5 -D 3 -I 0 -F -M 0 -G 0 -taggerFile $HOME/wekafiles/packages/AffectiveTweets/resources/model.20120919 -wordClustFile $HOME/wekafiles/packages/AffectiveTweets/resources/50mpaths2.txt.gz -Q 1 -stemmer weka.core.stemmers.NullStemmer -stopwords-handler \\\"weka.core.stopwords.Null \\\" -I 2 -U -tokenizer \\\"weka.core.tokenizers.TweetNLPTokenizer \\\"\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 1 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000 
+``` 
+
+
+
+
+3. Convert the predictions into the task format:
+
+```bash
+python fix_weka_output.py 2 2018-EI-oc-En-anger-dev.txt EI-oc-En-anger-weka-predictions.csv EI-oc_en_anger_pred.txt 
+``` 
+
+ 
+4. Evaluate the predictions: 
+ 
+ ```bash
+python evaluate.py 2  EI-oc_en_anger_pred.txt 2018-EI-oc-En-anger-dev.txt 
+ ``` 
+ 
+ 
  ## TODO
- Examples for making submissions for ordinal and multi-label classification tasks will be published soon. We will use [MEKA](http://meka.sourceforge.net/) (a Multi-label Extension to WEKA)  for the multi-label data.
+ Examples for making submissions for multi-label classification will be published soon. We will use [MEKA](http://meka.sourceforge.net/) (a Multi-label Extension to WEKA)  for the multi-label data.
