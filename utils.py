@@ -113,7 +113,6 @@ def evaluate_ei(pred,gold):
     :return: a list with performace metrics.
     
     """
-  
     
     f=open(pred, "rb")
     pred_lines=f.readlines()
@@ -137,8 +136,10 @@ def evaluate_ei(pred,gold):
                 continue
 
             parts=line.split('\t')
-            if len(parts)==4:   
-                data_dic[parts[0]]=[float(line.split('\t')[3])]
+            if len(parts)==4:
+                # tweet ids containing the word mystery are discarded
+                if(not 'mystery' in parts[0]):
+                    data_dic[parts[0]]=[float(line.split('\t')[3])]
             else:
                 sys.exit('Format problem in '+os.path.basename(gold)+'. Please report this problem to the task organizers.')
                 
@@ -152,15 +153,17 @@ def evaluate_ei(pred,gold):
                 continue
 
             parts=line.split('\t')      
-            if len(parts)==4:  
-                if parts[0] in data_dic:
-                    try:
-                        data_dic[parts[0]].append(float(line.split('\t')[3]))
-                    except ValueError:
-                        # Invalid predictions are replaced by a default value
-                        data_dic[parts[0]].append(0.5)
-                else:
-                    sys.exit('Invalid tweet id ('+parts[0]+') in '+os.path.basename(pred)+'.')
+            if len(parts)==4:
+                # tweet ids containing the word mystery are discarded
+                if(not 'mystery' in parts[0]):
+                    if parts[0] in data_dic:
+                        try:
+                            data_dic[parts[0]].append(float(line.split('\t')[3]))
+                        except ValueError:
+                            # Invalid predictions are replaced by a default value
+                            data_dic[parts[0]].append(0.5)
+                    else:
+                        sys.exit('Invalid tweet id ('+parts[0]+') in '+os.path.basename(pred)+'.')
             else:
                 sys.exit('Format problem in '+os.path.basename(pred)+'.') 
             

@@ -18,7 +18,7 @@
 # Author: felipebravom
 # Descrition: Command-line version of the evaluation script for SemEval-2018 Task 1: Affect in Tweets
 # usage: python evaluate.py <task_type> <file-predictions> <file-gold> 
-# task_type: 1 for regression, 2 for ordinal classification, and 3 for multi-label classification
+# task_type: 1 for regression, 2 for ordinal classification, and 3 for multi-label emotion classification
 # requires: numpy, scipy, sklearn
 
 
