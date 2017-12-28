@@ -67,7 +67,7 @@ The parameter <data_type> can take two possible values:
 * 1 for regression data (EI-reg, V-reg)
 * 2 for ordinal classification data (EC-oc, V-oc)
 
-Note: the current version of this script can only convert predictions made for the regression and ordinal classification tasks. We will add support for multi-label classification soon.
+Note: the current version of this script can only convert predictions made for the regression and ordinal classification tasks.
 
 
 ### 2.3. Examples
@@ -140,5 +140,28 @@ python evaluate.py 2  EI-oc_en_anger_pred.txt 2018-EI-oc-En-anger-dev.txt
  ``` 
  
  
- ## TODO
- Examples for making submissions for multi-label classification will be published soon. We will use [MEKA](http://meka.sourceforge.net/) (a Multi-label Extension to WEKA)  for the multi-label data.
+#### Binary Relevance Multi-label Classifier on E-c-En
+In this example we will train a binary relevance multi-label model on  2018-E-c-En-train using unigrams as features and an SVM as the base learner. We will deploy the classifier on the corresponding development set. We use [MEKA](http://meka.sourceforge.net/) (a Multi-label Extension to WEKA).
+
+
+1. Convert training and dev sets into arff format:
+ ```bash
+python tweets_to_arff.py 3 2018-E-c-En-train.txt 2018-E-c-En-train.arff
+python tweets_to_arff.py 3 2018-E-c-En-dev.txt 2018-E-c-En-dev.arff
+```
+
+2. Extract unigram features using AffectiveTweets:
+ ```bash
+java -Xmx4G -cp $WEKA_FOLDER/weka.jar  weka.Run weka.filters.MultiFilter -b -i 2018-E-c-En-train.txt 2018-E-c-En-train.arff -o train_trans.arff -r 2018-E-c-En-dev.txt 2018-E-c-En-dev.arff -s test_trans.arff -F "weka.filters.unsupervised.attribute.TweetToSparseFeatureVector -E 5 -D 3 -I 0 -F -M 0 -G 0 -taggerFile $HOME/wekafiles/packages/AffectiveTweets/resources/model.20120919 -wordClustFile $HOME/wekafiles/packages/AffectiveTweets/resources/50mpaths2.txt.gz -Q 1 -stemmer weka.core.stemmers.NullStemmer -stopwords-handler \"weka.core.stopwords.Null \" -I 13 -tokenizer \"weka.core.tokenizers.TweetNLPTokenizer \"" -F "weka.filters.unsupervised.attribute.Reorder -R 1-11,14-last"
+``` 
+
+3. Train a BR multi-label model with an SVM as the base learner using MEKA:
+ ```bash
+java -Xmx4G -jar TrainBR.jar train_trans.arff test_trans.arff 018-E-c-En-dev.txt E-C_en_pred.txt 
+```
+
+4. Evaluate the predictions: 
+ 
+ ```bash
+python evaluate.py 3 E-C_en_pred.txt 2018-E-c-En-dev.txt
+ ```  

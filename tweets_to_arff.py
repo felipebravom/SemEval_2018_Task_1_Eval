@@ -120,7 +120,7 @@ def create_multi_label_arff(input_file,output_file):
     in_header=True
     for line in lines:
         if(in_header):           
-            header_line='@relation \''+os.path.basename(input_file)+': -C 11\'\n\n@attribute ID string \n@attribute Tweet string\n@attribute anger {0,1}\n@attribute anticipation {0,1}\n@attribute disgust {0,1}\n@attribute fear {0,1}\n@attribute joy {0,1}\n@attribute love {0,1}\n@attribute optimism {0,1}\n@attribute pessimism {0,1}\n@attribute sadness {0,1}\n@attribute surprise {0,1}\n@attribute trust {0,1} \n\n@data\n'
+            header_line='@relation \''+os.path.basename(input_file)+': -C 11\'\n\n@attribute anger {0,1}\n@attribute anticipation {0,1}\n@attribute disgust {0,1}\n@attribute fear {0,1}\n@attribute joy {0,1}\n@attribute love {0,1}\n@attribute optimism {0,1}\n@attribute pessimism {0,1}\n@attribute sadness {0,1}\n@attribute surprise {0,1}\n@attribute trust {0,1} \n@attribute ID string \n@attribute Tweet string\n\n@data\n'
             out.write(header_line)
             in_header=False
         else:
@@ -144,7 +144,7 @@ def create_multi_label_arff(input_file,output_file):
                           
 
                 
-                out_line='\''+id+'\',\''+tweet+'\','+anger+','+anticipation+','+disgust+','+fear+','+joy+','+love+','+optimism+','+pessimism+','+sadness+','+surprise+','+trust+'\n'
+                out_line=anger+','+anticipation+','+disgust+','+fear+','+joy+','+love+','+optimism+','+pessimism+','+sadness+','+surprise+','+trust+',\''+id+'\',\''+tweet+'\'\n'
                 out.write(out_line)
             else:
                 print "Wrong format"
